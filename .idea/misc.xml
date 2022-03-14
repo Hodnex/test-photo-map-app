@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/drawable/bg_rect_14dp.xml" value="0.239" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/drawable/ic_add_24.xml" value="0.239" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.239" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/drawable/ic_send_comment.xml" value="0.239" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/activity_main.xml" value="0.2086956590966153" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/fragmen_login.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/fragment_full_screen.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/fragment_login.xml" value="0.26875" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/fragment_map.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/fragment_photo_full_screen.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/fragment_photos.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/grid_item_photo.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/item_comment.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/layout/main_mav_header.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/menu/main_nav_drawer.xml" value="0.26875" />
+        <entry key="..\:/Users/Hodne/AndroidStudioProjects/TestBalinaSoft/app/src/main/res/menu/menu_full_screen.xml" value="0.26875" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
