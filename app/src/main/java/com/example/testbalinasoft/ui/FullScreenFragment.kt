@@ -12,6 +12,7 @@ import com.example.testbalinasoft.R
 import com.example.testbalinasoft.adapter.CommentAdapter
 import com.example.testbalinasoft.data.Comment
 import com.example.testbalinasoft.databinding.FragmentFullScreenBinding
+import com.example.testbalinasoft.network.checkForInternet
 import com.example.testbalinasoft.viewmodel.FullScreenViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,10 +40,17 @@ class FullScreenFragment : Fragment(R.layout.fragment_full_screen), CommentAdapt
                 layoutManager = LinearLayoutManager(requireContext())
             }
             imageViewSendComment.setOnClickListener {
-                val text = editTextComment.text.toString()
-                editTextComment.setText("")
-                viewModel.postComment(text)
+                if (checkForInternet(requireContext())) {
+                    val text = editTextComment.text.toString()
+                    editTextComment.setText("")
+                    viewModel.postComment(text)
+                }
             }
+        }
+
+        if (checkForInternet(requireContext())) viewModel.getComments()
+        else {
+            viewModel.showErrorMessage("Lost internet connection")
         }
 
         val listener = activity as MainActivity

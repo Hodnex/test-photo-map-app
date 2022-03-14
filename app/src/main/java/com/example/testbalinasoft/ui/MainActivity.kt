@@ -21,6 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.testbalinasoft.R
 import com.example.testbalinasoft.databinding.ActivityMainBinding
+import com.example.testbalinasoft.network.checkForInternet
 import com.example.testbalinasoft.viewmodel.MainViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -70,6 +71,7 @@ class MainActivity : AppCompatActivity(), VisibilityFab {
                 )
             }
 
+
             imageViewBack.setOnClickListener {
                 navigateBack()
             }
@@ -82,8 +84,8 @@ class MainActivity : AppCompatActivity(), VisibilityFab {
         initNavigation()
 
         this.lifecycleScope.launchWhenCreated {
-            viewModel.mainEvent.collect{ event ->
-                when(event) {
+            viewModel.mainEvent.collect { event ->
+                when (event) {
                     is MainViewModel.MainEvent.ShowErrorMessage -> {
                         Snackbar.make(view, event.message, Snackbar.LENGTH_LONG).show()
                     }
@@ -157,14 +159,19 @@ class MainActivity : AppCompatActivity(), VisibilityFab {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 fusedLocationProviderClient.lastLocation.addOnSuccessListener { location ->
-                    val lat = location.latitude
-                    val lng = location.longitude
-                    viewModel.postImage(
-                        it.data,
-                        (System.currentTimeMillis() / 1000).toInt(),
-                        lat,
-                        lng
-                    )
+                    if (checkForInternet(this)) {
+                        val lat = location.latitude
+                        val lng = location.longitude
+                        viewModel.postImage(
+                            it.data,
+                            (System.currentTimeMillis() / 1000).toInt(),
+                            lat,
+                            lng
+                        )
+                    }
+                    else {
+                        viewModel.showErrorMessage("Lost internet connection")
+                    }
                 }
             }
         }

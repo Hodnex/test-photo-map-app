@@ -11,6 +11,7 @@ import com.example.testbalinasoft.R
 import com.example.testbalinasoft.adapter.ImageAdapter
 import com.example.testbalinasoft.data.Image
 import com.example.testbalinasoft.databinding.FragmentPhotosBinding
+import com.example.testbalinasoft.network.checkForInternet
 import com.example.testbalinasoft.viewmodel.PhotosViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +21,7 @@ class PhotosFragment : Fragment(R.layout.fragment_photos), ImageAdapter.OnItemCl
 
     private val viewModel: PhotosViewModel by viewModels()
 
-    private lateinit var binding : FragmentPhotosBinding
+    private lateinit var binding: FragmentPhotosBinding
     private lateinit var imageAdapter: ImageAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,21 +42,28 @@ class PhotosFragment : Fragment(R.layout.fragment_photos), ImageAdapter.OnItemCl
         val listener = activity as MainActivity
         listener.showFab()
 
-        viewModel.downloadImages()
+        if (checkForInternet(requireContext())) viewModel.downloadImages()
+        else {
+            viewModel.showErrorMessage("Lost internet connection")
+        }
 
         setupObservers()
     }
 
     private fun setupObservers() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.photosEvent.collect(){ event ->
-                when(event) {
+            viewModel.photosEvent.collect() { event ->
+                when (event) {
                     is PhotosViewModel.PhotosEvent.NavigateToFullScreen -> {
-                        val action = PhotosFragmentDirections.actionPhotosFragmentToFullScreenFragment(event.image)
+                        val action =
+                            PhotosFragmentDirections.actionPhotosFragmentToFullScreenFragment(event.image)
                         findNavController().navigate(action)
                     }
                     is PhotosViewModel.PhotosEvent.NavigateToDeleteDialog -> {
-                        val action = PhotosFragmentDirections.actionGlobalDeleteAllCompletedDialogFragment(image = event.image)
+                        val action =
+                            PhotosFragmentDirections.actionGlobalDeleteAllCompletedDialogFragment(
+                                image = event.image
+                            )
                         findNavController().navigate(action)
                     }
                     is PhotosViewModel.PhotosEvent.ShowErrorMessage -> {

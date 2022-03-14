@@ -25,11 +25,7 @@ class FullScreenViewModel @Inject constructor(
     private val fullScreenChannel = Channel<FullScreenEvent>()
     val fullScreenEvent = fullScreenChannel.receiveAsFlow()
 
-    init {
-        getComments()
-    }
-
-    private fun getComments() = viewModelScope.launch {
+    fun getComments() = viewModelScope.launch {
         val status = repository.getComments(image.id)
 
         if (status != 200) showErrorMessage("Network error")
@@ -41,7 +37,7 @@ class FullScreenViewModel @Inject constructor(
         if (status != 200) showErrorMessage("Network error")
     }
 
-    private fun showErrorMessage(message: String) = viewModelScope.launch {
+    fun showErrorMessage(message: String) = viewModelScope.launch {
         fullScreenChannel.send(FullScreenEvent.ShowErrorMessage(message))
     }
 

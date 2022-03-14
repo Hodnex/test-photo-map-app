@@ -30,7 +30,7 @@ class PhotosViewModel @Inject constructor(
         if (status != 200) showErrorMessage("Network error")
     }
 
-    private fun showErrorMessage(message: String) = viewModelScope.launch {
+    fun showErrorMessage(message: String) = viewModelScope.launch {
         photosChannel.send(PhotosEvent.ShowErrorMessage(message))
     }
 

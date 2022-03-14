@@ -33,7 +33,7 @@ class LoginViewModel @Inject constructor(
             }
         }
 
-    private fun navigateToPhotos() = viewModelScope.launch {
+    fun navigateToPhotos() = viewModelScope.launch {
         loginChannel.send(LoginEvent.NavigateToPhotoScreen)
     }
 

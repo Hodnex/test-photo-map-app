@@ -5,11 +5,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.testbalinasoft.R
+import com.example.testbalinasoft.network.checkForInternet
 import com.example.testbalinasoft.viewmodel.MapViewModel
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 
@@ -27,6 +29,10 @@ class MapFragment: Fragment(R.layout.fragment_map) {
         mapFragment.getMapAsync { googleMap ->
             myMap = googleMap
             updateMap()
+        }
+
+        if (!checkForInternet(requireContext())) {
+            Snackbar.make(requireView(), "Lost internet connection", Snackbar.LENGTH_LONG).show()
         }
 
         val listener = activity as MainActivity

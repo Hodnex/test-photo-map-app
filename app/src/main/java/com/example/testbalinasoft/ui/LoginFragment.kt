@@ -1,5 +1,9 @@
 package com.example.testbalinasoft.ui
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.testbalinasoft.R
 import com.example.testbalinasoft.databinding.FragmentLoginBinding
+import com.example.testbalinasoft.network.checkForInternet
 import com.example.testbalinasoft.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -29,13 +34,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 val login = editTextLogin.text.toString()
                 val password = editTextPassword.text.toString()
                 val confirmPassword = editTextPasswordConfirm.text.toString()
-                viewModel.signInCheck(login, password, confirmPassword)
+                if (!checkForInternet(requireContext())) viewModel.navigateToPhotos()
+                else viewModel.signInCheck(login, password, confirmPassword)
             }
 
             buttonLogIn.setOnClickListener {
                 val login = editTextLogin.text.toString()
                 val password = editTextPassword.text.toString()
-                viewModel.loginCheck(login, password)
+                if (!checkForInternet(requireContext())) viewModel.navigateToPhotos()
+                else viewModel.loginCheck(login, password)
             }
 
             tabLayoutLogin.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
