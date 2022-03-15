@@ -17,16 +17,9 @@ class DataRepository @Inject constructor(
             } else {
                 NetworkApi.retrofitService.singUp(loginRequest)
             }
-            val users = myDao.getUsers()
             val user = response.user
             token = user.token
-            if (!users.isNullOrEmpty()) {
-                if (users[0].userId != user.userId) {
-                    myDao.clearUsers()
-                    myDao.clearImages()
-                }
-            }
-            myDao.insertUser(user)
+            myDao.clearImages()
             return response.status
         } catch (e: Exception) {
             return e.message!!.filter { it.isDigit() }.toInt()

@@ -6,15 +6,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MyDao {
 
-    @Query("SELECT * FROM user_table")
-    suspend fun getUsers(): List<User>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: User)
-
-    @Query("DELETE FROM user_table")
-    suspend fun clearUsers()
-
     @Query("DELETE FROM image_table")
     suspend fun clearImages()
 
