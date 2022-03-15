@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
-class MapFragment: Fragment(R.layout.fragment_map) {
+class MapFragment : Fragment(R.layout.fragment_map) {
 
     private lateinit var myMap: GoogleMap
 
@@ -25,7 +25,8 @@ class MapFragment: Fragment(R.layout.fragment_map) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync { googleMap ->
             myMap = googleMap
             updateMap()
@@ -43,7 +44,7 @@ class MapFragment: Fragment(R.layout.fragment_map) {
         viewModel.images.observe(viewLifecycleOwner) { images ->
             for (image in images) {
                 val marker = LatLng(image.lat, image.lng)
-                val title = SimpleDateFormat("dd.MM.yyyy hh:mm").format( image.date * 1000L)
+                val title = SimpleDateFormat("dd.MM.yyyy hh:mm").format(image.date * 1000L)
                 myMap.addMarker(MarkerOptions().position(marker).title(title))
             }
         }

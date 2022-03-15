@@ -1,9 +1,5 @@
 package com.example.testbalinasoft.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -79,7 +75,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         findNavController().navigate(action)
                     }
                     is LoginViewModel.LoginEvent.ShowErrorMessage -> {
-                        Snackbar.make(requireView(), event.message, Snackbar.LENGTH_LONG ).show()
+                        Snackbar.make(requireView(), event.message, Snackbar.LENGTH_LONG).show()
                     }
                 }
             }

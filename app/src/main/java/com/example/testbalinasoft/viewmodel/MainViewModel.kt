@@ -43,7 +43,7 @@ class MainViewModel @Inject constructor(
         mainChannel.send(MainEvent.ShowErrorMessage(message))
     }
 
-    sealed class MainEvent{
+    sealed class MainEvent {
         data class ShowErrorMessage(val message: String) : MainEvent()
     }
 }

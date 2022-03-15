@@ -168,8 +168,7 @@ class MainActivity : AppCompatActivity(), VisibilityFab {
                             lat,
                             lng
                         )
-                    }
-                    else {
+                    } else {
                         viewModel.showErrorMessage("Lost internet connection")
                     }
                 }

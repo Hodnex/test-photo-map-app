@@ -19,7 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
-class FullScreenFragment : Fragment(R.layout.fragment_full_screen), CommentAdapter.OnItemClickListener {
+class FullScreenFragment : Fragment(R.layout.fragment_full_screen),
+    CommentAdapter.OnItemClickListener {
 
     private val viewModel: FullScreenViewModel by viewModels()
     private lateinit var commentAdapter: CommentAdapter
@@ -34,7 +35,7 @@ class FullScreenFragment : Fragment(R.layout.fragment_full_screen), CommentAdapt
         binding.apply {
             val image = viewModel.image
             Glide.with(requireContext()).load(image.url).into(imageViewFullPhoto)
-            textViewDate.text = SimpleDateFormat("dd.MM.yyyy hh:mm").format( image.date * 1000L)
+            textViewDate.text = SimpleDateFormat("dd.MM.yyyy hh:mm").format(image.date * 1000L)
             recyclerViewComments.apply {
                 adapter = commentAdapter
                 layoutManager = LinearLayoutManager(requireContext())
@@ -61,8 +62,8 @@ class FullScreenFragment : Fragment(R.layout.fragment_full_screen), CommentAdapt
 
     private fun setupObservers() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.fullScreenEvent.collect{ event ->
-                when(event) {
+            viewModel.fullScreenEvent.collect { event ->
+                when (event) {
                     is FullScreenViewModel.FullScreenEvent.NavigateToDeleteDialog -> {
                         val action =
                             FullScreenFragmentDirections.actionGlobalDeleteAllCompletedDialogFragment(

@@ -9,7 +9,8 @@ import com.example.testbalinasoft.data.Comment
 import com.example.testbalinasoft.databinding.ItemCommentBinding
 import java.text.SimpleDateFormat
 
-class CommentAdapter(val listener: OnItemClickListener) : ListAdapter<Comment, CommentAdapter.CommentViewHolder>(DiffCallback()) {
+class CommentAdapter(val listener: OnItemClickListener) :
+    ListAdapter<Comment, CommentAdapter.CommentViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val binding = ItemCommentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,7 +21,8 @@ class CommentAdapter(val listener: OnItemClickListener) : ListAdapter<Comment, C
         holder.bind(getItem(position))
     }
 
-    inner class CommentViewHolder(private val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class CommentViewHolder(private val binding: ItemCommentBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnLongClickListener {
@@ -33,7 +35,8 @@ class CommentAdapter(val listener: OnItemClickListener) : ListAdapter<Comment, C
         fun bind(comment: Comment) {
             binding.apply {
                 textViewComment.text = comment.text
-                textViewCommentTime.text = SimpleDateFormat("dd.MM.yyyy hh:mm").format(comment.date * 1000L)
+                textViewCommentTime.text =
+                    SimpleDateFormat("dd.MM.yyyy hh:mm").format(comment.date * 1000L)
             }
         }
     }

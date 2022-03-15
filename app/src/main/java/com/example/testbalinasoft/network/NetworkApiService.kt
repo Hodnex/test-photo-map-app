@@ -50,7 +50,10 @@ interface NetworkApiService {
 
     @DELETE("api/image/{id}")
     @Headers("accept: */*")
-    suspend fun deleteImage(@Header("Access-Token") token: String, @Path("id") id: Int): ImageResponse
+    suspend fun deleteImage(
+        @Header("Access-Token") token: String,
+        @Path("id") id: Int
+    ): ImageResponse
 
     @GET("api/image/{imageId}/comment")
     @Headers("accept: */*")
